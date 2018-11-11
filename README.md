@@ -1,2 +1,2 @@
-# pokemonapp
+# POKEMON APP
 Ionic tutorial
