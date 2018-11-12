@@ -10,8 +10,14 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class PokemonApiProvider {
 
+  pokUrl = "https://pokeapi.co/api/v2/pokemon/?limit=1000"
+
   constructor(public http: HttpClient) {
     console.log('Hello PokemonApiProvider Provider');
+  }
+
+  getPokemons(){
+    return this.http.get(this.pokUrl);
   }
 
 }
