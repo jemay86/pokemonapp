@@ -1,5 +1,10 @@
+import { IPokemonResult } from './../../models/pokemon-results';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs/Observable';
+import { IPokemonData } from '../../models/pokemon-data';
+import {map} from "rxjs/operators"
+import { Pokemon } from '../../models/pokemon';
 
 /*
   Generated class for the PokemonApiProvider provider.
@@ -16,8 +21,14 @@ export class PokemonApiProvider {
     console.log('Hello PokemonApiProvider Provider');
   }
 
-  getPokemons(){
-    return this.http.get(this.pokUrl);
+  getPokemons():Observable<Pokemon[]> {
+
+    return this.http.get<IPokemonResult>(this.pokUrl).pipe(
+      map((res: IPokemonResult) => res.results),
+      map((res: [IPokemonData]) => {
+        return res.map(pokdata => new Pokemon(pokdata))
+      })
+    ); 
   }
 
 }
