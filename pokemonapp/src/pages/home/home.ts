@@ -19,4 +19,9 @@ export class HomePage {
 
   }
 
+  showPokDetail(pok: Pokemon){
+    this.navCtrl.push("PokemonDetailPage", {pok: Pokemon})
+  }
+
 }
+ 
