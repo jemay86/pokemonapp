@@ -1,9 +1,10 @@
-import { IPokemonResult } from './../../models/pokemon-results';
-import { IPokemonData } from './../../models/pokemon-data';
-import { PokemonApiProvider } from './../../providers/pokemon-api/pokemon-api';
+
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
-import { Pokemon } from '../../models/pokemon';
+import {PokemonApiProvider} from "../../providers/pokemon-api/pokemon-api";
+
+import { Pokemon} from "../../models/pokemon";
+import {PokemonDetailPage} from "../pokemon-detail/pokemon-detail";
 
 @Component({
   selector: 'page-home',
@@ -11,17 +12,17 @@ import { Pokemon } from '../../models/pokemon';
 })
 export class HomePage {
 
-  pokemons: [Pokemon]
+   pokemons:[Pokemon]
 
-  constructor(public navCtrl: NavController, pokApi: PokemonApiProvider) {
+  constructor(public navCtrl: NavController, private pokApi: PokemonApiProvider) {
 
-    pokApi.getPokemons().subscribe( (res: [Pokemon]) => this.pokemons = res)
+      pokApi.getPokemons().subscribe( (res: [Pokemon])=>  this.pokemons = res)
 
   }
 
-  showPokDetail(pok: Pokemon){
-    this.navCtrl.push("PokemonDetailPage", {pok: Pokemon})
+  showPokDetail( pok: Pokemon) {
+       //this.pokApi.getPokemonDetails(pok).s
+        this.navCtrl.push('PokemonDetailPage', {id:pok.id, pok:pok})
   }
 
 }
- 
