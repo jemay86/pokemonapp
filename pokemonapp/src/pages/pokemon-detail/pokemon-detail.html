@@ -7,7 +7,9 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>Pokemon detail</ion-title>
+    <ion-title>Pokemon detail
+        {{pokDetails$ | json}}
+    </ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -22,4 +24,8 @@
       </ion-thumbnail>
     </ion-item>
   </ion-list>
+  <ion-item>
+    height {{ (pokDetails$ | async)?.height}}
+  </ion-item>
+    
 </ion-content>
